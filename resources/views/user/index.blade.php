@@ -1,30 +1,21 @@
 @extends('user.user')
+@section('title', 'Data Booking User')
 @section('content')
     <div class="container">
         <div class="main-content container-fluid">
-            <div class="page-title mt-5 ">
+            <div class="page-title mt-3 ">
                 <h3>Data Booking</h3>
             </div>
             <section class="section">
-                <div class="card">
+                <div class="card my-4">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-xl-6 ">
+                            <div class="col-xl-6 my-3">
                                 <a href="{{ route('bookinguser.create') }}" class="btn btn-success btn-icon-split me-4"
                                     role="button"><span class="text-white text"><i data-feather="plus"></i>
-                                        Create</span></a>
+                                        Booking</span></a>
                             </div>
-                            <div class="col-xl-6 d-flex justify-content-end">
-                                <form style="width: 50% " action="{{ route('bookinguser.index') }}" method="get">
-                                    <div class="text-md-end">
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="Search.."
-                                                name="search">
-                                            <button class="btn btn-primary" type="submit" id="button-addon2">Cari</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                            
                         </div>
                         <div class="table-responsive">
                             <table class='table table-striped my-0' id="table1">
@@ -42,39 +33,39 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($bookings as $booking)
+                                    @forelse ($bookings as $bookinguser)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $booking->lapangan->no }}</td>
-                                            {{-- @dd($bookings) --}}
+                                            <td>{{ $bookinguser->lapangan->no }}</td>
+                                            {{-- @dd($bookingusers) --}}
                                             @php
                                                 Carbon\Carbon::setLocale('id');
                                             @endphp
-                                            <td>{{ Carbon\Carbon::parse($booking->from)->isoFormat('ddd, DD MMM Y HH:mm') }}
+                                            <td>{{ Carbon\Carbon::parse($bookinguser->from)->isoFormat('ddd, DD MMM Y HH:mm') }}
                                             </td>
-                                            <td>{{ Carbon\Carbon::parse($booking->to)->isoFormat('ddd, DD MMM Y HH:mm') }}
+                                            <td>{{ Carbon\Carbon::parse($bookinguser->to)->isoFormat('ddd, DD MMM Y HH:mm') }}
                                             </td>
                                             @php
-                                                $from = Carbon\Carbon::parse($booking->from);
-                                                $to = Carbon\Carbon::parse($booking->to);
+                                                $from = Carbon\Carbon::parse($bookinguser->from);
+                                                $to = Carbon\Carbon::parse($bookinguser->to);
                                                 $hourDifference = $to->diffInHours($from);
                                             @endphp
 
                                             <td>{{ $hourDifference }} Jam</td>
-                                            <td>Rp{{ number_format($booking->lapangan->price * $hourDifference, 2, ',', '.') }}
+                                            <td>Rp{{ number_format($bookinguser->lapangan->price * $hourDifference, 2, ',', '.') }}
                                             </td>
                                             <td>
-                                                <a href="{{ asset('storage/booking/' . $booking->payment) }}"
+                                                <a href="{{ asset('storage/booking/' . $bookinguser->payment) }}"
                                                     id="img" target="_blank">
-                                                    <img class="card-img-top w-10 enlarge-image"
-                                                        src="{{ asset('storage/booking/' . $booking->payment) }}" />
+                                                    <img width="50px"
+                                                        src="{{ asset('storage/booking/' . $bookinguser->payment) }}" />
                                                 </a>
                                             </td>
                                             <td>
-                                                @if ($booking->status == 0)
+                                                @if ($bookinguser->status == 0)
                                                     <span class="badge bg-danger">Pending</span>
                                                 @endif
-                                                @if ($booking->status == 1)
+                                                @if ($bookinguser->status == 1)
                                                     <span class="badge bg-success">Success</span>
                                                 @endif
                                             </td>
@@ -82,14 +73,14 @@
                                                 <div class="d-flex gap-2">
                                                     <button class="btn btn-primary rounded-4 p-2 " type="submit"
                                                         style="text-align: justify;">
-                                                        <i class="text-white" data-feather="edit"></i>
+                                                        Edit
                                                     </button>
-                                                    <form action="{{ route('booking.destroy', $booking) }}" method="post">
+                                                    <form action="{{ route('bookinguser.destroy', $bookinguser) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="btn btn-danger rounded-4 p-2 " type="submit"
                                                             style="text-align: justify;">
-                                                            <i class="text-white " data-feather="trash-2"></i>
+                                                            Delete
                                                         </button>
                                                     </form>
                                                 </div>

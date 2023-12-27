@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Data Lapangan')
 @section('content')
     <div class="content">
         <div class="main-content container-fluid">
@@ -59,10 +60,10 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex gap-2"> 
-                                                    <button class="btn btn-primary rounded-4 p-2 " type="submit"
+                                                    <a class="btn btn-primary rounded-4 p-2 " href="{{ route('lapangan.edit', $lapangan) }}"
                                                         style="text-align: justify;">
                                                         <i class="text-white" data-feather="edit"></i>
-                                                    </button>
+                                                    </a>
                                                     <form action="{{ route('lapangan.destroy', $lapangan) }}"
                                                         method="post">
                                                         @csrf

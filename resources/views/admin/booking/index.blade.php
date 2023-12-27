@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Data Booking')
 @section('content')
     <div class="content">
         <div class="main-content container-fluid">
@@ -15,11 +16,10 @@
                                         Create</span></a>
                             </div>
                             <div class="col-xl-6 d-flex justify-content-end">
-                                <form style="width: 50% " action="{{ route('booking.index') }}" method="get">
+                                <form style="width: 50%" action="{{ route('booking.index') }}" method="get">
                                     <div class="text-md-end">
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="Search.."
-                                                name="search">
+                                            <input type="text" class="form-control" placeholder="Search.." name="search">
                                             <button class="btn btn-primary" type="submit" id="button-addon2">Cari</button>
                                         </div>
                                     </div>
@@ -74,18 +74,29 @@
                                             </td>
                                             <td>
                                                 @if ($booking->status == 0)
+                                                <form action="{{ route('booking.success', $booking) }}" method="Post">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit" style="border: none; background: none; padding:0;">
                                                     <span class="badge bg-danger">Pending</span>
+                                                        </button>
+                                                </form>
                                                 @endif
                                                 @if ($booking->status == 1)
-                                                    <span class="badge bg-success">Success</span>
+                                                <form action="{{ route('booking.cancel', $booking) }}" method="Post">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit" style="border: none; background: none; padding:0;">
+                                                    <span class="badge bg-success">Success</span></button>
+                                                </form>
                                                 @endif
                                             </td>
                                             <td>
                                                 <div class="d-flex gap-2">
-                                                    <button class="btn btn-primary rounded-4 p-2 " type="submit"
+                                                    <a href="{{route('booking.edit', $booking)}}" class="btn btn-primary rounded-4 p-2 " type="submit"
                                                         style="text-align: justify;">
                                                         <i class="text-white" data-feather="edit"></i>
-                                                    </button>
+                                                    </a>
                                                     <form action="{{ route('booking.destroy', $booking) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
@@ -106,7 +117,7 @@
                                 </tbody>
                             </table>
                             <div class="col">
-                                {{-- <div class="row-xl-4">
+                                <div class="row-xl-4">
                                     <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
                                         Showing {{ $bookings->firstItem() }} to {{ $bookings->lastItem() }} of
                                         {{ $bookings->total() }} entries
@@ -118,8 +129,9 @@
                                         {{ $bookings->links() }}
                                     </div>
                                 </div>
-                            </div> --}}
                             </div>
+                            </div>
+                            
                         </div>
                     </div>
 

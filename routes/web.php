@@ -19,9 +19,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [BookingUserController::class, 'welcome'])->name('welcome');
+Route::get('/jadwal/{lapangan}', [BookingUserController::class, 'showjadwal'])->name('jadwal.show');
+Route::get('/jadwal', [BookingUserController::class, 'jadwal'])->name('jadwal');
+
+
 Route::middleware('auth')->group(function(){
-    
-    Route::get('/jadwal', [BookingUserController::class, 'jadwal'])->name('jadwal');
     Route::resource('bookinguser', BookingUserController::class);
 });
 
@@ -41,6 +43,8 @@ Route::middleware('admin')->group(function(){
 
     Route::resource('lapangan', LapanganController::class);
     Route::resource('booking', BookingController::class);
+    Route::patch('/booking/{booking}/success', [BookingController::class, 'success'])->name('booking.success');
+    Route::patch('/booking/{booking}/cancel', [BookingController::class, 'cancel'])->name('booking.cancel');
 
     //user
     Route::resource('/user', UserController::class);

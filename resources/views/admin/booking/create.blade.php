@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Tambah Booking admin')
 @section('content')
 
     <div class="content">
@@ -53,7 +54,7 @@
                                             </div>
                                             <div class="row-12 d-flex justify-content-end">
                                                 <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                                                <a type="button" href="{{ url()->previous() }}"
+                                                <a type="button" href="{{ route('booking.index') }}"
                                                     class="btn btn-danger me-1 mb-1">Cancel</a>
                                             </div>
                                         </div>

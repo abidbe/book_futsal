@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Tambah Data Lapangan')
 @section('content')
     <div class="content">
         <div class="main-content container-fluid">

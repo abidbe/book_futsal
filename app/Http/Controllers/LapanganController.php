@@ -13,7 +13,7 @@ class LapanganController extends Controller
      */
     public function index()
     {
-        $lapangans = Lapangan::latest()->filter(request(['search']))->paginate(10)->withQueryString();
+        $lapangans = Lapangan::orderBy('no','asc')->filter(request(['search']))->paginate(10)->withQueryString();
         
         return view('admin.lapangan.index', compact('lapangans'));
     }

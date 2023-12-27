@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@section('title', 'Dashboard')
 @section('content')
     <div class="content">
         <div class="main-content container-fluid">
@@ -12,9 +13,9 @@
                             <div class="card-body p-0">
                                 <div class="d-flex flex-column">
                                     <div class='px-3 py-3 d-flex justify-content-between'>
-                                        <h3 class='card-title'>BALANCE</h3>
+                                        <h3 class='card-title'>PELANGGAN</h3>
                                         <div class="card-right d-flex align-items-center">
-                                            <p>$50 </p>
+                                            <p>{{$users}}</p>
                                         </div>
                                     </div>
                                     <div class="chart-wrapper">
@@ -29,9 +30,9 @@
                             <div class="card-body p-0">
                                 <div class="d-flex flex-column">
                                     <div class='px-3 py-3 d-flex justify-content-between'>
-                                        <h3 class='card-title'>Revenue</h3>
+                                        <h3 class='card-title'>BOOKING SUKSES</h3>
                                         <div class="card-right d-flex align-items-center">
-                                            <p>$532,2 </p>
+                                            <p>{{$bookingsukses}}</p>
                                         </div>
                                     </div>
                                     <div class="chart-wrapper">
@@ -46,9 +47,9 @@
                             <div class="card-body p-0">
                                 <div class="d-flex flex-column">
                                     <div class='px-3 py-3 d-flex justify-content-between'>
-                                        <h3 class='card-title'>ORDERS</h3>
+                                        <h3 class='card-title'>BOOKING PENDING</h3>
                                         <div class="card-right d-flex align-items-center">
-                                            <p>1,544 </p>
+                                            <p>{{$bookingpending}}</p>
                                         </div>
                                     </div>
                                     <div class="chart-wrapper">
@@ -63,9 +64,9 @@
                             <div class="card-body p-0">
                                 <div class="d-flex flex-column">
                                     <div class='px-3 py-3 d-flex justify-content-between'>
-                                        <h3 class='card-title'>Sales Today</h3>
+                                        <h3 class='card-title'>saldo</h3>
                                         <div class="card-right d-flex align-items-center">
-                                            <p>423 </p>
+                                            <p>Rp {{ number_format($bookingtotal, 2, ',', '.') }}</p>
                                         </div>
                                     </div>
                                     <div class="chart-wrapper">
@@ -75,9 +76,23 @@
                             </div>
                         </div>
                     </div>
+                        <div class="card shadow mb-4">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h6 class="text-primary fw-bold m-0 p-2">Pemasukan</h6>
+                                
+                            </div>
+                            <div class="card-body">
+                                <div class="p-6 m-20 bg-white rounded shadow">
+                                    {!! $chart->container() !!}
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </section>
         </div>
         
     </div>
+    <script src="{{ $chart->cdn() }}"></script>
+
+    {{ $chart->script() }}
 @endsection
