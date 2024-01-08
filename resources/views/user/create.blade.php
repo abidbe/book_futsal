@@ -16,8 +16,8 @@
                             <div class="card-content">
                                 <div class="card-body pt-2">
                                     <div class="text-center">
-                                        <h5>Nomor DANA</h5>
-                                        <p>087700343303</p>
+                                        <h5>Nomor DANA <span><img width="25" src="{{asset('danalogo.png')}}" alt=""></span></h5>
+                                        <p>087700343303 (Abdul Aziz Fathoni)</p>
                                         <img src="{{ asset('qrdana.png') }}" alt="DANA QR Code" width="350"
                                             class="mb-4">
                                     </div>
