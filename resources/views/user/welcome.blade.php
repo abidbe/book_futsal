@@ -59,7 +59,7 @@
                 <div>
                     <h2>Solusi booking futsal lebih cepat</h2>
                     <p>Nikmati pengalaman booking futsal yang praktis, efisien, dan terpercaya dengan Semar Futsal.</p>
-                    <a class="btn btn-outline-success" >Booking Sekarang!</a>
+                    <a href="{{ route('bookinguser.create') }}" class="btn btn-outline-success" >Booking Sekarang!</a>
                 </div>
             </div>
         </div>
