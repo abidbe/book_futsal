@@ -13,7 +13,7 @@ class BookingUserController extends Controller
 {
     public function welcome()
     {
-        $lapangans = Lapangan::where('status', 1)->orderBy('no','asc')->get();
+        $lapangans = Lapangan::where('status', 1)->orderBy('no', 'asc')->get();
         // dd($lapangans);
         return view('user.welcome', compact('lapangans'));
     }
@@ -37,7 +37,7 @@ class BookingUserController extends Controller
                 ->where('status', 1)
                 ->whereDate('from', '>=', $from)
                 ->whereDate('from', '<', $from->copy()->addDay()->startOfDay())
-                ->orderBy('from', 'asc') 
+                ->orderBy('from', 'asc')
                 ->get();
 
             return DataTables::of($bookings)
@@ -122,14 +122,7 @@ class BookingUserController extends Controller
             return redirect()->back();
         }
     }
-    public function update(){
-        //
-    }
-    public function edit(Booking $bookinguser)
-    {
-        $lapangans = Lapangan::where('status', 1)->get();
-        return view('user.edit', compact('bookinguser', 'lapangans'));
-    }
+
     public function destroy(Booking $bookinguser)
     {
         // dd($bookinguser);

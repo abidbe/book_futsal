@@ -71,10 +71,6 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex gap-2">
-                                                    <a href="{{route('bookinguser.edit',$bookinguser)}}" class="btn btn-primary rounded p-2 "
-                                                        style="text-align: justify;">
-                                                        Edit
-                                                    </a>
                                                     <form action="{{ route('bookinguser.destroy', $bookinguser) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')

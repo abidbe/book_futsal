@@ -8,7 +8,24 @@
             </div>
             <section id="multiple-column-form">
                 <div class="row match-height">
-                    <div class="col-xl-6">
+                    <div class="col-xl-6 mb-3">
+                        <div class="card">
+                            <div class="card-header pb-0">
+                                <h4 class="card-title">Pembayaran</h4>
+                            </div>
+                            <div class="card-content">
+                                <div class="card-body pt-2">
+                                    <div class="text-center">
+                                        <h5>Nomor DANA</h5>
+                                        <p>087700343303</p>
+                                        <img src="{{ asset('qrdana.png') }}" alt="DANA QR Code" width="350"
+                                            class="mb-4">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 mb-3">
                         <div class="card">
                             <div class="card-header pb-0">
                                 <h4 class="card-title">Isi Semua Data</h4>
@@ -70,6 +87,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </section>
         </div>
@@ -82,26 +100,26 @@
             var ke = new Date($('#to').val());
             var selisihWaktu = (ke - dari) / 1000 / 3600;
             var hargaTotal = hargaLapanganPerJam * selisihWaktu;
-    
+
             // Ubah hargaTotal ke format mata uang Indonesia (IDR)
             var formatter = new Intl.NumberFormat('id-ID', {
                 style: 'currency',
                 currency: 'IDR'
             });
             var hargaTotalFormatted = formatter.format(hargaTotal);
-    
+
             $('#totalPrice').val(hargaTotalFormatted);
         }
-    
-        $('#from, #to, #lapangan_id').on('change', function () {
+
+        $('#from, #to, #lapangan_id').on('change', function() {
             hitungHargaTotal();
         });
-    
+
         // Perhitungan awal
         hitungHargaTotal();
-    
+
         // Perbarui harga total setiap 1 detik (opsional)
-        setInterval(function () {
+        setInterval(function() {
             hitungHargaTotal();
         }, 0);
     </script>

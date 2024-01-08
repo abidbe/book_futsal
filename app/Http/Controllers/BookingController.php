@@ -140,7 +140,7 @@ class BookingController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $booking = Booking::findOrFail($id);
+            
             $lapangan = Lapangan::findOrFail($request->lapangan_id);
             $request->validate([
                 'lapangan_id' => 'required',
@@ -153,11 +153,11 @@ class BookingController extends Controller
                 $imageName = time() . '.' . $request->payment->extension();
                 $request->payment->storeAs('public/booking', $imageName);
                 // Hapus gambar sebelumnya jika ada
-                if ($booking->payment) {
-                    Storage::delete('public/booking/' . $booking->payment);
+                if ($id->payment) {
+                    Storage::delete('public/booking/' . $id->payment);
                 }
             } else {
-                $imageName = $booking->payment;
+                $imageName = $id->payment;
             }
 
             // Validasi agar tidak bertabrakan waktunya
@@ -191,7 +191,7 @@ class BookingController extends Controller
             }
 
             // Update booking
-            $booking->update([
+            $id->update([
                 'lapangan_id' => $lapangan->id,
                 'from' => $request->from,
                 'to' => $request->to,
