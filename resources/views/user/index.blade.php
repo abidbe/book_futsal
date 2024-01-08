@@ -71,14 +71,14 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex gap-2">
-                                                    <button class="btn btn-primary rounded-4 p-2 " type="submit"
+                                                    <a href="{{route('bookinguser.edit',$bookinguser)}}" class="btn btn-primary rounded p-2 "
                                                         style="text-align: justify;">
                                                         Edit
-                                                    </button>
+                                                    </a>
                                                     <form action="{{ route('bookinguser.destroy', $bookinguser) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button class="btn btn-danger rounded-4 p-2 " type="submit"
+                                                        <button class="btn btn-danger rounded p-2 " type="submit"
                                                             style="text-align: justify;">
                                                             Delete
                                                         </button>
@@ -95,7 +95,7 @@
                                 </tbody>
                             </table>
                             <div class="col">
-                                {{-- <div class="row-xl-4">
+                                <div class="row-xl-4">
                                     <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">
                                         Showing {{ $bookings->firstItem() }} to {{ $bookings->lastItem() }} of
                                         {{ $bookings->total() }} entries
@@ -107,7 +107,7 @@
                                         {{ $bookings->links() }}
                                     </div>
                                 </div>
-                            </div> --}}
+                            </div>
                             </div>
                         </div>
                     </div>

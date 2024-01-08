@@ -49,7 +49,7 @@ class BookingUserController extends Controller
     }
     public function index()
     {
-        $bookings = Booking::with('lapangan')->where('user_id', auth()->user()->id)->get();
+        $bookings = Booking::with('lapangan')->where('user_id', auth()->user()->id)->latest()->paginate(8);
         return view('user.index', compact('bookings'));
     }
     public function create()
@@ -121,6 +121,14 @@ class BookingUserController extends Controller
             Alert::error('Error', 'Please fill all the fields!');
             return redirect()->back();
         }
+    }
+    public function update(){
+        //
+    }
+    public function edit(Booking $bookinguser)
+    {
+        $lapangans = Lapangan::where('status', 1)->get();
+        return view('user.edit', compact('bookinguser', 'lapangans'));
     }
     public function destroy(Booking $bookinguser)
     {
